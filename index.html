@@ -1,1 +1,110 @@
-ddd
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게티와 산책 중</title>
+    <style>
+        @font-face {
+            font-family: 'KerisKedyuche';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_R.woff2') format('woff2');
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'KerisKedyuche';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-3@1.0/KERISKEDU_B.woff2') format('woff2');
+            font-weight: 700;
+            font-display: swap;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fff;
+        }
+
+        .loading_wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .g_img {
+            max-height: 500px;
+            height: 100%;
+            object-fit: cover;
+            margin-bottom: 24px;
+            animation: walkBounce 0.4s ease-in-out infinite alternate;
+        }
+
+        .g_title {
+            font-family: 'KerisKedyuche';
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.4;
+            word-break: keep-all;
+        }
+
+        @keyframes walkBounce {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @media (max-width: 1000px) {
+            .g_img {
+                max-height: 300px;
+            }
+            
+        .g_title {
+            font-family: 'KerisKedyuche';
+            font-size: 1.3rem;}
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading_wrap">
+        <img src="./gimg.png" alt="쇼핑하는 게티" class="g_img">
+        <p class="g_title">게티와 함께 <br> 쇼핑하러 가는 중~!</p>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemCode = urlParams.get('item');
+
+        const linkData = {
+            'osmoCam': 'https://link.coupang.com/a/fv3LaAOlOe', // 오즈모 액션캠
+            'test': 'https://link.coupang.com/a/link' // 
+        };
+
+        setTimeout(() => {
+            if (itemCode && linkData[itemCode]) {
+                window.location.href = linkData[itemCode];
+            } else {
+                // 링크 오류시 블로그로 이동
+                window.location.href = 'https://blog.naver.com/getti3333';
+
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
