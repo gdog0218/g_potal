@@ -98,16 +98,23 @@
               'JJA': 'https://link.coupang.com/a/gNs3YLwyRw', // 짜르르
             
         };
+        
+const targetUrl = (itemCode && linkData[itemCode]) ? linkData[itemCode] : 'https://blog.naver.com/getti3333';
 
-        setTimeout(() => {
-            if (itemCode && linkData[itemCode]) {
-                window.location.href = linkData[itemCode];
-            } else {
-                // 링크 오류시 블로그로 이동
-                window.location.href = 'https://blog.naver.com/getti3333';
-
+        // 뒤로가기로 접근했는지 체크하는 이벤트
+        window.addEventListener('pageshow', (event) => {
+            // event.persisted: 캐시되어 복원된 경우 (뒤로가기 등)
+            if (event.persisted) {
+                // 뒤로가기 시 로딩에 갇히지 않고 바로 이전(블로그)으로 보냄
+                window.history.back();
+                return;
             }
-        }, 1000);
+
+            // 처음 들어왔을 때만 1초 뒤 이동
+            setTimeout(() => {
+                window.location.replace(targetUrl);
+            }, 1000);
+        });
     </script>
 </body>
 
